@@ -1,0 +1,192 @@
+.label {
+    -fx-font-family: "Open Sans";
+}
+.label:hover {
+    -fx-font-family: "Open Sans Semibold";
+}
+.menu-bar {
+    -fx-background-color: #d5d5d5;
+}
+.menu {
+    -fx-background-color: #d5d5d5;
+}
+.menu .label {
+    -fx-text-fill: black;
+    -fx-font-family: "Open Sans";
+}
+.menu:hover {
+    -fx-background-color: #9099a2;
+}
+.menu:hover .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Open Sans";
+}
+.menu-item {
+    -fx-background-color: #d5d5d5;
+}
+.menu-item .label {
+    -fx-text-fill: black;
+    -fx-font-family: "Open Sans";
+}
+.menu-item:hover {
+    -fx-background-color: #9099a2;
+}
+.menu-item:hover .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Open Sans Semibold";
+}
+.context-menu {
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: #d5d5d5;
+    -fx-background-radius: 0 0 0 0;
+}
+.context-menu .menu-item {
+    -fx-background-color: #d5d5d5;
+}
+.context-menu .menu-item .label {
+    -fx-text-fill: black;
+    -fx-font-family: "Open Sans";
+}
+.context-menu .menu-item:hover {
+    -fx-background-color: #9099a2;
+}
+.context-menu .menu-item:hover .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Open Sans Semibold";
+}
+.tool-bar {
+    -fx-background-color: #9099a2;
+}
+.vbox {
+    -fx-background-color: #d5d5d5;
+}
+.scroll-pane .viewport{
+    -fx-background-color: #d5d5d5;
+}
+.scroll-pane {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.scroll-pane:focused {
+    -fx-background-insets: 0;
+}
+.scroll-pane .corner {
+    -fx-background-insets: 0;
+}
+
+/* The main scrollbar CSS class of ListView */
+.scroll-bar:horizontal ,
+.scroll-bar:vertical{
+    -fx-background-color:transparent;
+
+}
+
+/* The increment and decrement button CSS class of scrollbar */
+.increment-button ,.decrement-button {
+    -fx-background-color:transparent;
+    -fx-border-color:derive(gray,80%);
+}
+
+/* The main scrollbar **track** CSS class  */
+.scroll-bar:horizontal .track ,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color:derive(gray,80%);
+    -fx-background-radius: 0em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #9099a2;
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 0em;
+
+}
+
+/* ------------------------------------------------------------------------------------- */
+/** EVENT CSS **/
+/* ------------------------------------------------------------------------------------- */
+
+/* The main scrollbar **track** CSS class on event of "hover" and "pressed" */
+
+.scroll-bar:horizontal:hover .track ,
+.scroll-bar:horizontal:pressed .track ,
+.scroll-bar:vertical:hover .track,
+.scroll-bar:vertical:pressed .track{
+    -fx-background-color: derive(#434343,20%);
+
+    -fx-opacity: 0.2;
+    -fx-background-radius: 0em;
+
+}
+
+/* The main scrollbar **thumb** CSS class on event of "hover" and "pressed" */
+.scroll-bar .thumb:hover,
+.scroll-bar .thumb:pressed{
+    -fx-background-color: slategray;
+}
+
+.increment-button:hover ,.mylistview .decrement-button:hover {
+    -fx-background-color:derive(gray,100%);
+    -fx-border-color:derive(gray,80%);
+    -fx-padding:10px;
+}
+
+.slider {
+    -fx-background-radius: 0 0 0 0;
+    -fx-padding: 10 10 10 0;
+}
+
+.slider .track {
+    -fx-background-color: #9099a2;
+}
+
+.slider:hover .track,
+.slider:pressed .track,
+.slider:focused .track {
+    -fx-background-color: slategray;
+}
+
+.slider .thumb {
+    -fx-background-color: #d5d5d5;
+    -fx-background-radius: 0 0 0 0;
+}
+
+.slider:hover .thumb,
+.slider:pressed .thumb,
+.slider:focused .thumb {
+    -fx-background-color: #9099a2;
+}
+
+.button {
+    -fx-background-color: #9099a2;
+    -fx-border-radius: 0 0 0 0;
+}
+
+.button:hover {
+    -fx-background-color: #d5d5d5;
+}
+
+.text-field {
+    -fx-background-color: #9099a2;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-padding: 10 10 10 0;
+}
+
+.text-field:hover {
+    -fx-background-color: slategray;
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+}
+
+.choice-box {
+    -fx-padding: 10 10 10 10;
+    -fx-background-insets: 10 10 10 10;
+    -fx-border-radius: 0 0 0 0;
+}
+
+.v-box .label {
+    -fx-padding: 10 10 10 0;
+}
