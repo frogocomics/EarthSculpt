@@ -7,6 +7,7 @@ import com.gmail.frogocomics.earthsculpt.core.connection.Input;
 import com.gmail.frogocomics.earthsculpt.core.connection.Output;
 import com.gmail.frogocomics.earthsculpt.core.data.HeightField;
 import com.gmail.frogocomics.earthsculpt.core.parameters.DoubleParameter;
+import com.gmail.frogocomics.earthsculpt.core.parameters.IntegerParameter;
 import com.gmail.frogocomics.earthsculpt.core.parameters.LongParameter;
 import com.gmail.frogocomics.earthsculpt.core.parameters.Parameter;
 import com.gmail.frogocomics.earthsculpt.utils.HeightmapUtils;
@@ -32,10 +33,14 @@ public class OpenSimplexDevice extends DefaultDevice implements Device {
     private boolean built = false;
 
     private static final int SCALE = 0;
-    private static final int SEED = 1;
+    private static final int PERSISTENCE = 1;
+    private static final int OCTAVES = 2;
+    private static final int SEED = 3;
 
     public OpenSimplexDevice() {
         parameters.add(new DoubleParameter("Scale", 0.5));
+        parameters.add(new DoubleParameter("Persistence", 0.4));
+        parameters.add(new IntegerParameter(1, 15, "Octaves", 8));
         parameters.add(new LongParameter(0, Long.MAX_VALUE - 1, "Seed", ThreadLocalRandom.current().nextInt(0, 65535 + 1)));
         outputs[0] = new HeightmapOutput(false, "Primary Output");
     }
@@ -93,7 +98,7 @@ public class OpenSimplexDevice extends DefaultDevice implements Device {
             x += scale;
             for(int m = 0; m < resolution; m++) {
                 y += scale;
-                values[n][m] = noise.generateOpenSimplexNoise(x, y);
+                values[n][m] = noise.generateOpenSimplexNoise(x, y, (Double) parameters.get(PERSISTENCE).getValue(), (Integer) parameters.get(OCTAVES).getValue());
             }
         }
         try {
@@ -122,10 +127,16 @@ public class OpenSimplexDevice extends DefaultDevice implements Device {
 
     public void setValue(String parameterName, Object value) {
         if(parameterName.equals("Scale")) {
-            parameters.get(0).setValue(value);
+            parameters.get(SCALE).setValue(value);
+        }
+        if(parameterName.equals("Persistence")) {
+            parameters.get(PERSISTENCE).setValue(value);
+        }
+        if(parameterName.equals("Octaves")) {
+            parameters.get(OCTAVES).setValue(value);
         }
         if(parameterName.equals("Seed")) {
-            parameters.get(1).setValue(value);
+            parameters.get(SEED).setValue(value);
         }
     }
 }

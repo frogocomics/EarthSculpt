@@ -68,7 +68,7 @@ public class OpenSimplexNoise {
     }
 
     //2D OpenSimplex Noise.
-    public double generateOpenSimplexNoise(double x, double y) {
+    public double generateInterpolatedOpenSimplexNoise(double x, double y) {
 
         //Place input coordinates onto grid.
         double stretchOffset = (x + y) * STRETCH_CONSTANT_2D;
@@ -180,6 +180,20 @@ public class OpenSimplexNoise {
         }
 
         return value / NORM_CONSTANT_2D;
+    }
+
+    //2D OpenSimplex Noise, with octaves
+    public double generateOpenSimplexNoise(double x, double y, double persistence, int octaves) {
+
+        double total = 0;
+
+        for(int i = 0; i < octaves; i++) {
+            double frequency = Math.pow(2, 1)/128f;
+            double amplitude = Math.pow(persistence, i);
+            total += generateInterpolatedOpenSimplexNoise(x * frequency, y * frequency) * amplitude;
+        }
+
+        return total;
     }
 
     public double extrapolate(int xsb, int ysb, double dx, double dy) {

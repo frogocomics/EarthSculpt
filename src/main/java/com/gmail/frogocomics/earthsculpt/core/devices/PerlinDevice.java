@@ -136,7 +136,7 @@ public final class PerlinDevice extends DefaultDevice implements Device, Mutlith
      *
      * @since 0.0.1
      */
-    public WorkableType run(int resolution, boolean isPreview) {
+    public HeightField run(int resolution, boolean isPreview) {
 
         //<editor-fold desc=Set the perlin interpolation style the user has chosen">
         PerlinInterpolationStyle style;

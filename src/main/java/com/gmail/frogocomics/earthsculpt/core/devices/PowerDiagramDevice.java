@@ -1,10 +1,10 @@
-/*
 package com.gmail.frogocomics.earthsculpt.core.devices;
 
 import com.gmail.frogocomics.earthsculpt.core.ProjectSettings;
 import com.gmail.frogocomics.earthsculpt.core.connection.HeightmapOutput;
 import com.gmail.frogocomics.earthsculpt.core.connection.Input;
 import com.gmail.frogocomics.earthsculpt.core.connection.Output;
+import com.gmail.frogocomics.earthsculpt.core.data.HeightField;
 import com.gmail.frogocomics.earthsculpt.core.parameters.DoubleParameter;
 import com.gmail.frogocomics.earthsculpt.core.parameters.IntegerParameter;
 import com.gmail.frogocomics.earthsculpt.core.parameters.Parameter;
@@ -56,7 +56,7 @@ public class PowerDiagramDevice extends DefaultDevice implements Device {
         return built;
     }
 
-    public void run() {
+    public HeightField run() {
         /**
          * This might be hard to understand.
          *
@@ -67,7 +67,7 @@ public class PowerDiagramDevice extends DefaultDevice implements Device {
          * So 60 x 1 = 60
          * Basically the maximum amount of points is 100 per square kilometer. (Minimum is 1 point)
          */
-/*
+
         int points = (int)((1 - (Double) parameters.get(0).getValue()) * 100) * (ProjectSettings.SIZE * ProjectSettings.SIZE);
         int seed = (Integer) parameters.get(1).getValue();
         PowerDiagram diagram = new PowerDiagram();
@@ -84,7 +84,7 @@ public class PowerDiagramDevice extends DefaultDevice implements Device {
         /**
          * Randomly generate a certain amount of points based on a seed.
          */
-/*
+
         for(int i = 0; i < points; i++) {
             Site site = new Site(random.nextInt(width), random.nextInt(width));
             sites.add(site);
@@ -96,6 +96,8 @@ public class PowerDiagramDevice extends DefaultDevice implements Device {
             Site site=sites.array[i];
             PolygonSimple polygon = site.getPolygon();
         }
+
+        return null;
     }
 
     public void setValue(String parameterName, Object value) {
@@ -108,4 +110,4 @@ public class PowerDiagramDevice extends DefaultDevice implements Device {
     }
 
 }
-*/
+

@@ -68,7 +68,7 @@ public final class InverterDevice extends DefaultDevice implements Device, Mutli
     }
 
     @Override
-    public HeightField run(int resolution) {
+    public HeightField run(int resolution, boolean isPreview) {
         if(FlowUtils.getHeightFieldFromInput((HeightmapInput[]) inputs).isPresent()) {
             double[][] oldValues = FlowUtils.getHeightFieldFromInput((HeightmapInput[]) inputs).get().getHeights();
             double[][] newValues = new double[resolution][resolution];
@@ -80,17 +80,17 @@ public final class InverterDevice extends DefaultDevice implements Device, Mutli
 
             try {
                 //Create the heightfield based on the generated perlin values from the methods above
-                HeightField field = new HeightField(ProjectSettings.WORLD_SIZE, ProjectSettings.WORLD_SIZE, newValues, resolution);
-                //Save the built perlin to a temporary file while setting the location of the file
-                //Generated to the main output.
-                outputs[0].setBuildLocation(HeightmapUtils.save(field));
-                //Save memory by setting all values to null
-                Arrays.fill(oldValues, null);
-                Arrays.fill(newValues, null);
-
-                built = true;
-                return field;
-
+                HeightField field = new HeightField(ProjectSettings.WORLD_SIZE, ProjectSettings.WORLD_SIZE, newValues, ProjectSettings.SIZE);
+                if(!isPreview) {
+                    //Save the built perlin to a temporary file while setting the location of the file
+                    //Generated to the main output.
+                    outputs[0].setBuildLocation(HeightmapUtils.save(field));
+                    //Save memory by setting all values to null
+                    Arrays.fill(newValues, null);
+                    return field;
+                } else {
+                    return field;
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 //todo: error message
@@ -101,7 +101,7 @@ public final class InverterDevice extends DefaultDevice implements Device, Mutli
 
     @Override
     public HeightField generatePreview() {
-        return run(256);
+        return run(256, true);
     }
 
     @Override

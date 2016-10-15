@@ -108,7 +108,7 @@ public class ConstantDevice extends DefaultDevice implements Device {
     /**
      * Build this device.
      */
-    public WorkableType run(int resolution) {
+    public WorkableType run(int resolution, boolean isPreview) {
         double[][] values = new double[resolution][resolution];
         double height = (double) parameters.get(0).getValue();
         for(int x = 0; x < resolution; x++) {
@@ -119,13 +119,16 @@ public class ConstantDevice extends DefaultDevice implements Device {
         try {
             //Create the heightfield based on the generated perlin values from the methods above
             HeightField field = new HeightField(ProjectSettings.WORLD_SIZE, ProjectSettings.WORLD_SIZE, values, ProjectSettings.SIZE);
-            //Save the built perlin to a temporary file while setting the location of the file
-            //Generated to the main output.
-            outputs[0].setBuildLocation(HeightmapUtils.save(field));
-            //Save memory by setting all values to null
-            Arrays.fill(values, null);
-            return field;
-
+            if(!isPreview) {
+                //Save the built perlin to a temporary file while setting the location of the file
+                //Generated to the main output.
+                outputs[0].setBuildLocation(HeightmapUtils.save(field));
+                //Save memory by setting all values to null
+                Arrays.fill(values, null);
+                return field;
+            } else {
+                return field;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             //todo: error message
@@ -135,7 +138,7 @@ public class ConstantDevice extends DefaultDevice implements Device {
 
     @ClassType(type = HeightField.class)
     public WorkableType generatePreview() {
-        return run(256);
+        return run(256, true);
     }
 
     /**
